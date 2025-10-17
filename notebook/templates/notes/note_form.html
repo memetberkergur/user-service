@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if object %}Notu Düzenle{% else %}Yeni Not Ekle{% endif %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/note_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="noteform-wrapper">
+  <div class="noteform-card">
+
+    <h2 class="noteform-title">
+      {% if object %}
+        <i class="bi bi-pencil-square text-primary"></i> Edit Proposal
+      {% else %}
+        <i class="bi bi-journal-plus text-primary"></i> Add New Proposal
+      {% endif %}
+    </h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <input type="text" name="title" id="id_title"
+               class="note-input" placeholder="Proposal Title"
+               value="{{ form.title.value|default:'' }}" required>
+      </div>
+
+      <div class="form-group">
+        <textarea name="content" id="id_content" rows="8"
+                  class="note-textarea"
+                  placeholder="Proposal Content ..." required>{{ form.content.value|default:'' }}</textarea>
+      </div>
+
+      <div class="noteform-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-check-circle me-1"></i> Save
+        </button>
+        <button type="button" class="btn btn-outline-secondary"
+                onclick="window.location.href='{% url 'note_list' %}'">
+          <i class="bi bi-arrow-left me-1"></i> Return
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% if messages %}
+  {% for message in messages %}
+    {% if "success" in message.tags %}
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          Swal.fire({
+            title: "Başarılı!",
+            text: "{{ message }}",
+            icon: "success",
+            confirmButtonText: "Tamam",
+            confirmButtonColor: "#0d6efd",
+            timer: 2200,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        });
+      </script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% endblock %}

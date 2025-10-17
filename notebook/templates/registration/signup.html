@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Kayıt Ol{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+  <div class="signup-box">
+
+    <!-- Sol taraf -->
+    <div class="signup-image">
+      <div class="overlay">
+        <!--
+        <h1>Not Defteri</h1>
+        <p>Fikirlerini kaydet, düşüncelerini düzenle.</p>
+        -->
+      </div>
+    </div>
+
+    <!-- Sağ taraf: form -->
+    <div class="signup-form">
+      <h2>Hesap Oluştur</h2>
+
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                <li><strong>{{ field|capfirst }}</strong>: {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <!-- Kullanıcı adı -->
+        <div class="form-floating mb-3">
+          <input type="text" name="username" id="id_username" class="form-control" placeholder="Kullanıcı adınızı girin" required>
+          <label for="id_username"><i class="bi bi-person me-2"></i> Kullanıcı Adı</label>
+        </div>
+
+        <!-- E-posta -->
+        <div class="form-floating mb-3">
+          <input type="email" name="email" id="id_email" class="form-control" placeholder="ornek@mail.com" required>
+          <label for="id_email"><i class="bi bi-envelope me-2"></i> E-posta</label>
+        </div>
+
+        <!-- Şifre -->
+        <div class="form-floating mb-3">
+          <input type="password" name="password1" id="id_password1" class="form-control" placeholder="••••••••" required>
+          <label for="id_password1"><i class="bi bi-lock me-2"></i> Şifre</label>
+        </div>
+
+        <!-- Şifre tekrar -->
+        <div class="form-floating mb-3">
+          <input type="password" name="password2" id="id_password2" class="form-control" placeholder="••••••••" required>
+          <label for="id_password2"><i class="bi bi-lock-fill me-2"></i> Şifre (Tekrar)</label>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 py-2 mt-2">
+          <i class="bi bi-person-plus-fill me-1"></i> Kayıt Ol
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-muted small">
+        Zaten hesabın var mı?
+        <a href="{% url 'login' %}" class="text fw-semibold">Giriş Yap</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

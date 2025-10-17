@@ -1,0 +1,86 @@
+/* ===============================
+   Account Activation Page Styles
+   =============================== */
+
+.activation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 140px);
+  background: linear-gradient(135deg, #f8faff 0%, #f1f4ff 100%);
+  padding: 1rem;
+}
+
+/* Kart */
+.activation-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  max-width: 520px;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+/* İkon */
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0d6efd, #0099ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2.5rem;
+  box-shadow: 0 6px 20px rgba(13,110,253,0.3);
+  animation: popIn 0.4s ease;
+}
+
+/* Başlık ve metin */
+.activation-box h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.activation-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Buton */
+.activation-box .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  transition: all 0.25s ease;
+}
+.activation-box .btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobil */
+@media (max-width: 576px) {
+  .activation-box {
+    padding: 2.2rem 1.5rem;
+  }
+  .activation-box h2 {
+    font-size: 1.3rem;
+  }
+  .icon-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
+}

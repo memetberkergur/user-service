@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Notu Sil{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/note_confirm_delete.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-wrapper">
+  <div class="delete-card shadow-sm">
+
+    <div class="delete-icon text-danger mb-3">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+    </div>
+
+    <h3 class="delete-title text-danger">Notu Sil</h3>
+    <p class="delete-text">
+      “<strong>{{ object.title }}</strong>” adlı notu silmek istediğinize emin misiniz?
+    </p>
+
+    <form method="post" class="delete-form">
+      {% csrf_token %}
+      <div class="delete-actions">
+        <button type="submit" class="btn btn-danger">
+          <i class="bi bi-trash me-1"></i> Evet, Sil
+        </button>
+        <button type="button" class="btn btn-outline-secondary"
+                onclick="window.location.href='{% url 'note_list' %}'">
+          <i class="bi bi-arrow-left me-1"></i> İptal
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

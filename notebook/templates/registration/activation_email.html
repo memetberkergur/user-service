@@ -1,0 +1,12 @@
+{% autoescape off %}
+Merhaba {{ user.username }},
+
+Hesabınızı aktifleştirmek için aşağıdaki bağlantıya tıklayın 👇
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Eğer bu işlemi siz başlatmadıysanız, bu e-postayı görmezden gelebilirsiniz.
+
+Teşekkürler,  
+Not Defteri Ekibi
+{% endautoescape %}

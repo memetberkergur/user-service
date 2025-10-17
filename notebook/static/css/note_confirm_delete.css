@@ -1,0 +1,95 @@
+/* ===============================
+   DELETE CONFIRM PAGE STYLES
+   =============================== */
+
+.delete-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 180px);
+  background: #f8f9fa;
+}
+
+.delete-card {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.delete-icon { font-size: 3rem; }
+
+.delete-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.delete-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* -------- Pixel-perfect button alignment -------- */
+.delete-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;                 /* aralık için gap kullan, margin değil */
+}
+
+.delete-actions .btn {
+  display: inline-flex;      /* ikon+metni aynı hatta tut */
+  align-items: center;
+  justify-content: center;
+  height: 46px;              /* aynı yükseklik */
+  line-height: 1;            /* baseline farkını bitirir */
+  padding: 0 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease;
+  margin: 0;                 /* olası .btn + .btn margin'ını sıfırla */
+}
+
+.delete-actions .btn + .btn { margin-left: 0; } /* bootstrap defaultunu iptal et */
+
+.delete-actions .btn i {
+  line-height: 1;
+  display: inline-block;
+  margin-right: .375rem;     /* me-1 ile tutarlı */
+}
+
+/* Renkler */
+.delete-actions .btn-danger { 
+  background-color: #dc3545; 
+  border-color: #dc3545;
+  color: #fff;
+}
+.delete-actions .btn-danger:hover {
+  background-color: #bb2d3b;
+  border-color: #b02a37;
+  transform: translateY(-2px);
+}
+
+.delete-actions .btn-outline-secondary {
+  background: transparent;
+  color: #495057;
+  border-color: #adb5bd;
+  border-width: 1px;         /* iki butonda da 1px olsun */
+}
+.delete-actions .btn-outline-secondary:hover {
+  background: #f1f3f5;
+  color: #212529;
+  transform: translateY(-2px);
+}
+
+/* Mobil */
+@media (max-width: 576px) {
+  .delete-card { padding: 2rem 1.25rem; }
+  .delete-actions { flex-direction: column; gap: 10px; }
+  .delete-actions .btn { width: 100%; }
+}

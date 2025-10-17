@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}User Service{% endblock %}</title>
+
+  <!-- Bootstrap ve Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Ana CSS -->
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- Arka plan zigzag animasyonu -->
+  <div id="zigzag" class="zigzag-container"></div>
+<script>
+  const container = document.getElementById("zigzag");
+  const BALL_COUNT = 100;
+  const MAX_OFFSET_PX = 5; // en fazla ±15px -> toplam 30px demet genişliği
+
+  for (let i = 0; i < BALL_COUNT; i++) {
+    const ball = document.createElement("div");
+    ball.className = "moving-ball";
+
+    // 🔹 Rastgele dikey konum (±15px)
+    const offsetY = (Math.random() * 2 - 1) * MAX_OFFSET_PX;
+    ball.style.top = `calc(50% + ${offsetY}px)`;
+
+    // 🔹 Rastgele animasyon gecikmesi (0–1.5s)
+    ball.style.animationDelay = (Math.random() * 1.5).toFixed(2) + "s";
+    //ball.style.animationDelay = (5) + "s";
+
+    // 🔹 Hız varyasyonu (5.5–6.5s arası)
+    ball.style.animationDuration = (5) + "s";
+
+    // 🔹 Boyut varyasyonu (4–7px)
+    const size = 4;
+    ball.style.width = `${size}px`;
+    ball.style.height = `${size}px`;
+
+    container.appendChild(ball);
+  }
+</script>
+
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container-fluid px-4">
+
+      <!-- Sol: logo ve başlık -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'note_list' %}">
+        <img src="{% static 'img/tarla-logo-1063x319.svg' %}" alt="Tarla Logo" class="me-2" style="height:32px; vertical-align:middle;">
+        <span class="fw-bold">User Service</span>
+      </a>
+
+      <!-- Mobil menü butonu -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Sağ: kullanıcı durumu -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+        <ul class="navbar-nav align-items-center gap-2">
+
+          {% if user.is_authenticated %}
+          <!-- 🔵 Kullanıcı dropdown menüsü -->
+          <li class="nav-item dropdown">
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle d-flex align-items-center"
+                    id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-1"></i>
+              {{ user.username }}
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <i class="bi bi-person-lines-fill me-2"></i> Profilim
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="{% url 'logout' %}" method="post" class="px-3 mb-0">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm w-100 d-flex align-items-center justify-content-center">
+                    <i class="bi bi-box-arrow-right me-1"></i> Çıkış Yap
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </li>
+
+          {% else %}
+          <!-- 🟢 Giriş / Kayıt Butonları -->
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-sm">
+              <i class="bi bi-box-arrow-in-right"></i> Giriş
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'signup' %}" class="btn btn-primary btn-sm">
+              <i class="bi bi-person-plus"></i> Kayıt Ol
+            </a>
+          </li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- İçerik -->
+  <main class="flex-fill pt-5 mt-4">
+    <div class="container py-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer mt-auto bg-white text-center py-3 shadow-sm">
+    <div class="container">
+      <p class="mb-0 text-muted small">
+        Designed with ❤️ by <strong>Berker GÜR</strong> · © 2025 Turkish Accelerator and Radiation Laboratory
+      </p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Global Alert Script -->
+  <script>
+    // Django mesajlarını JS'e JSON olarak aktarıyoruz
+    const django_messages = [
+      {% for message in messages %}
+        {
+          text: "{{ message|escapejs }}",
+          tags: "{{ message.tags }}"
+        }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ];
+  </script>
+  <script src="{% static 'js/alerts.js' %}"></script>
+</body>
+</html>
+

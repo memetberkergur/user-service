@@ -1,0 +1,159 @@
+/* ===============================
+   SIGNUP PAGE - Modern Blue Design
+   =============================== */
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 140px);
+  background: linear-gradient(180deg, #f3f6ff 0%, #f8f9fa 100%);
+  padding: 1rem;
+}
+
+/* Ana kutu */
+.signup-box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.signup-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Sol taraf - görsel */
+.signup-image {
+  flex: 1;
+  min-width: 45%;
+  position: relative;
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+              url("../img/login-logo.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.signup-image .overlay {
+  text-align: center;
+  padding: 2rem;
+}
+
+.signup-image .overlay h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.signup-image .overlay p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Sağ taraf - form */
+.signup-form {
+  flex: 1;
+  min-width: 55%;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff;
+}
+
+.signup-form h2 {
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #0d6efd; /* 🔵 Mavi tema başlığı */
+}
+
+/* Floating label stili */
+.form-floating {
+  position: relative;
+}
+
+.form-floating input {
+  border: none;
+  border-bottom: 2px solid #dee2e6;
+  border-radius: 0;
+  font-size: 1rem;
+  padding: 1rem 0.75rem 0.25rem 0.75rem;
+  background: transparent;
+  box-shadow: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.form-floating input:focus {
+  border-color: #0d6efd;
+  outline: none;
+  background: #f6f9ff;
+}
+
+.form-floating label {
+  color: #6c757d;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+  color: #0d6efd;
+  transform: translateY(-0.5rem);
+  font-size: 0.8rem;
+}
+
+/* Buton */
+.signup-form button {
+  background-color: #0d6efd;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.signup-form button:hover {
+  transform: translateY(-2px);
+  background-color: #0b5ed7;
+}
+
+/* Alt bağlantı */
+.signup-form p {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+.signup-form a {
+  text-decoration: none;
+  transition: 0.2s;
+  color: #0d6efd;
+  font-weight: 500;
+}
+.signup-form a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive düzen */
+@media (max-width: 768px) {
+  .signup-box {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .signup-image {
+    height: 220px;
+  }
+
+  .signup-image .overlay h1 {
+    font-size: 1.6rem;
+  }
+}

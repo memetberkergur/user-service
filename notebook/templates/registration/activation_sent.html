@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Hesap Aktivasyonu{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/activation.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="activation-wrapper">
+  <div class="activation-box text-center">
+
+    <div class="icon-circle mb-3">
+      <i class="bi bi-envelope-check"></i>
+    </div>
+
+    <h2>Aktivasyon E-postası Gönderildi</h2>
+    <p class="text-muted">
+      Kayıt işleminiz başarıyla alındı.<br>
+      Lütfen <strong>{{ user.email }}</strong> adresinize gönderilen aktivasyon bağlantısını kontrol edin.<br>
+      Hesabınızı onayladıktan sonra giriş yapabilirsiniz.
+    </p>
+
+    <a href="{% url 'login' %}" class="btn btn-primary mt-3">
+      <i class="bi bi-box-arrow-in-right me-1"></i> Giriş Ekranına Dön
+    </a>
+
+  </div>
+</div>
+{% endblock %}

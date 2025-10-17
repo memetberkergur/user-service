@@ -1,0 +1,179 @@
+/* ===============================
+   BASE.CSS — Sticky Layout + Navbar
+   =============================== */
+
+/* Genel yapı */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  background-color: #f8f9fa;
+}
+
+/* Navbar yüksekliği + offset */
+main {
+  margin-top: 72px; /* fixed navbar için boşluk */
+}
+
+/* Navbar görünümü */
+.navbar {
+  background: #fff !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand i {
+  color: #0d6efd;
+  transition: 0.2s ease;
+}
+
+.navbar-brand:hover i {
+  color: #0a58ca;
+}
+
+.navbar-brand span {
+  color: #333;
+  transition: 0.2s ease;
+}
+
+.navbar-brand:hover span {
+  color: #0d6efd;
+}
+
+/* Navbar butonları */
+.navbar .btn-sm {
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.navbar .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+
+/* Kullanıcı Dropdown */
+.navbar .dropdown-toggle::after {
+  display: none; /* varsayılan küçük oka gerek yok */
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+  animation: dropdownFade 0.15s ease-in-out;
+}
+
+.dropdown-menu a.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+}
+
+.dropdown-menu a.dropdown-item:hover {
+  background-color: #f3f6ff;
+  color: #0d6efd;
+}
+
+.dropdown-divider {
+  margin: 0.4rem 0;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobil menü */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .navbar .btn-sm {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Footer */
+.footer {
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.footer p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer strong {
+  color: #0d6efd;
+}
+
+/* Mesaj kutuları */
+.alert {
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+/* FAB (Yeni not ekle) */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 55px;
+  height: 55px;
+  background: #0d6efd;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.fab:hover {
+  background: #0b5ed7;
+  transform: scale(1.05);
+}
+
+/* Kart animasyonu */
+.note-card {
+  transition: 0.25s ease;
+  border: none;
+  border-radius: 10px;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Formlar */
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+form button {
+  margin-top: 10px;
+}
+
+/* Küçük ekranlarda navbar eleman hizası */
+@media (max-width: 576px) {
+  .navbar .btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
